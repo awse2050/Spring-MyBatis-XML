@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.awse.mapper.EmployeeMapper">
+
+	<resultMap type="com.awse.domain.EmployeeVO" id="employeeMap">
+		<id property="id" column="id" />
+		<result property="id" column="id" />
+		<result property="companyId" column="company_id" />
+		<result property="name" column="employee_name" />
+		<result property="address" column="employee_address" />
+	</resultMap>
+	
+	
+	<insert id="insert" parameterType="com.awse.domain.EmployeeVO" useGeneratedKeys="true" keyProperty="id">
+		insert into employee ( company_id, employee_name, employee_address ) values ( #{companyId}, #{name} , #{address} )
+	</insert>
+
+	<select id="getList" resultMap="employeeMap" resultType="com.awse.domain.EmployeeVO">
+		select * from employee 
+	</select>
+
+	<select id="getById" resultMap="employeeMap" resultType="com.awse.domain.EmployeeVO">
+		select * from employee where id = #{id}
+	</select>
+
+	<select id="getByCompanyId" resultMap="employeeMap" resultType="com.awse.domain.EmployeeVO">
+		select * from employee where company_id = #{companyId}
+	</select>
+
+</mapper>
